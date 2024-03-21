@@ -21,7 +21,7 @@ pipeline {
         stage('Update the deployment file and push it') {
             steps{
                 script {
-                    withCredentials([usernamePassword(credentialsI: 'git-cred', variable: 'GIT_TOKEN')]) {
+                    withCredentials([usernamePassword(credentialsId: 'git-cred', variable: 'GIT_TOKEN')]) {
                         sh '''
                         git config user.email "vishavdeshwal@gmail.com"
                         git config user.name "vishav deshwal"
