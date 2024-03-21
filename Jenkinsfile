@@ -22,7 +22,7 @@ pipeline {
                     git config user.email "vishavdeshwal@gmail.com"
                     git add deployment.yaml
                     git commit -m "updated the deployment file"
-                    git push origin main
+                    git push main
 
                     '''
                 }
