@@ -26,7 +26,7 @@ pipeline {
                         git config user.email "vishavdeshwal@gmail.com"
                         git config user.name "vishav deshwal"
                         cat deployment.yaml
-                        sed -i 's|image: vishv3432/my_first_java_app:.* |image: vishv3432/my_first_java_app:${params.IMAGE_NAME}|' deployment.yaml
+                        sed -i 's|image: vishv3432/my_first_java_app:.*|image: vishv3432/my_first_java_app:${params.IMAGE_NAME}|' deployment.yaml
                         cat deployment.yaml
                         git add deployment.yaml
                         git commit -m "updated the deployment file"
