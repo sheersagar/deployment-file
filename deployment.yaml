@@ -16,6 +16,6 @@ spec:
     spec:
        containers:
        - name: jforjava
-         image: 
+         image:7
          ports:
          - containerPort: 8080
