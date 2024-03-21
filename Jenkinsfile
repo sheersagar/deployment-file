@@ -26,6 +26,7 @@ pipeline {
                         git config user.email "vishavdeshwal@gmail.com"
                         git config user.name "vishav deshwal"
                         cat deployment.yaml
+                        echo "IMAGE_NAME IS: ${params.IMAGE_NAME}"
                         sed -i 's|image: .*|image: ${params.IMAGE_NAME}|' deployment.yaml
                         cat deployment.yaml
                         git add deployment.yaml
