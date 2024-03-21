@@ -7,7 +7,7 @@ pipeline {
     }
 
     parameters{
-        string(name: 'IMAGE_NAME', defaultValue: '', description: 'Docker image name to deploy')
+        string(name: 'DOCKER_IMAGE_NAME', defaultValue: '', description: 'Docker image name to deploy')
     }
 
     stages {
@@ -25,7 +25,7 @@ pipeline {
                         sh '''
                         git config user.email "vishavdeshwal@gmail.com"
                         git config user.name "vishav deshwal"
-                        sed -i 's|image:.* |image:${params.IMAGE_NAME}|' deployment.yaml
+                        sed -i 's|image:.* |image:${params.DOCKER_IMAGE_NAME}|' deployment.yaml
                         git add deployment.yaml
                         git commit -m "updated the deployment file"
                         git push https://$GIT_USER:$GIT_TOKEN@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME}.git HEAD:main
