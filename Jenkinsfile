@@ -7,7 +7,7 @@ pipeline {
     }
 
     parameters{
-        string(name: 'IMAGE_NAME', defaultValue: env.IMAGE_NAME, description: 'Docker image name to deploy')
+        string(name: 'IMAGE_NAME', defaultValue: '', description: 'Docker image name to deploy')
     }
 
     stages {
