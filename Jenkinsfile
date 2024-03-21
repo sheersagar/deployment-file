@@ -1,6 +1,11 @@
 pipeline {
     agent any 
 
+    environment {
+        GIT_REPO_NAME = "deployment-file"
+        GIT_USER_NAME = "sheersagar"
+    }
+
     parameters{
         string(name: 'IMAGE_NAME', defaultValue: '', description: 'Docker image name to deploy')
     }
@@ -16,15 +21,16 @@ pipeline {
         stage('Update the deployment file and push it') {
             steps{
                 script {
-                    sh "sed -i 's|image:.* |image:${params.IMAGE_NAME}|' deployment.yaml"
-                    sh '''
-                    git config user.name "vishav deshwal"
-                    git config user.email "vishavdeshwal@gmail.com"
-                    git add deployment.yaml
-                    git commit -m "updated the deployment file"
-                    git push origin main
-
-                    '''
+                    withCredentials([usernamePassword(credentialsI: 'git-cred', variable: 'GIT_TOKEN')]) {
+                        sh '''
+                        git config user.email "vishavdeshwal@gmail.com"
+                        git config user.name "vishav deshwal"
+                        sed -i 's|image:.* |image:${params.IMAGE_NAME}|' deployment.yaml
+                        git add deployment.yaml
+                        git commit -m "updated the deployment file"
+                        git push https://${GIT_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:main
+                        '''
+                    }
                 }
             }
         }
