@@ -21,14 +21,14 @@ pipeline {
         stage('Update the deployment file and push it') {
             steps{
                 script {
-                    withCredentials([usernamePassword(credentialsId: 'git-cred', variable: 'GIT_TOKEN')]) {
+                    withCredentials([usernamePassword(credentialsId: 'git-cred', usernameVariable: 'GIT_USER', passwordVariable: 'GIT_TOKEN')]) {
                         sh '''
                         git config user.email "vishavdeshwal@gmail.com"
                         git config user.name "vishav deshwal"
                         sed -i 's|image:.* |image:${params.IMAGE_NAME}|' deployment.yaml
                         git add deployment.yaml
                         git commit -m "updated the deployment file"
-                        git push https://${GIT_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:main
+                        git push https://$GIT_USER:$GIT_TOKEN@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME}.git HEAD:main
                         '''
                     }
                 }
