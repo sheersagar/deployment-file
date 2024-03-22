@@ -6,9 +6,9 @@ pipeline {
         GIT_USER_NAME = "sheersagar"
     }
 
-    parameters{
-        string(name: 'IMAGE_NAME', defaultValue: '', description: 'Docker image name to deploy')
-    }
+    //parameters{
+      //  string(name: 'IMAGE_NAME', defaultValue: '', description: 'Docker image name to deploy')
+    //}
 
     stages {
 
