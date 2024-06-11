@@ -16,6 +16,6 @@ spec:
     spec:
        containers:
        - name: jforjava
-         image: vishv3432/just-chill:14
+         image: vishv3432/just-chill:18
          ports:
          - containerPort: 8080
